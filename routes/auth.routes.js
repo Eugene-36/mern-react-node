@@ -63,6 +63,7 @@ router.post(
       const { email, password } = req.body;
 
       const user = await User.findOne({ email });
+
       if (!user) {
         return res.status(400).json({ message: 'User was not found' });
       }
@@ -75,7 +76,7 @@ router.post(
           .json({ message: 'Incorrect password, try again' });
       }
 
-      const token = hjwt.sign({ userId: user.id }, config.get('jwtSecret'), {
+      const token = jwt.sign({ userId: user.id }, config.get('jwtSecret'), {
         expiresIn: '1h',
       });
 
