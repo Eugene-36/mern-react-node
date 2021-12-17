@@ -17,6 +17,10 @@ export const AuthPage = () => {
     clearError();
   }, [error, message, clearError]);
 
+  useEffect(() => {
+    window.M.updateTextFields();
+  }, []);
+
   const registerHandler = async () => {
     try {
       const data = await request('/api/auth/register', 'POST', { ...form });

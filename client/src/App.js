@@ -8,6 +8,8 @@ import { Navbar } from './components/Navbar';
 import 'materialize-css';
 //console.log(useRoutes);
 
+//======================================
+
 function App() {
   const { token, login, logout, userId } = useAuth();
   const isAuthenticated = !!token;
@@ -18,7 +20,7 @@ function App() {
     <AuthContext.Provider
       value={{ token, login, logout, userId, isAuthenticated }}
     >
-      <Router history={customHistory}>
+      <Router history={customHistory} key={Math.random()}>
         {isAuthenticated && <Navbar />}
         <div className='container'>{routes}</div>
       </Router>
