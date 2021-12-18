@@ -11,6 +11,10 @@ export const useHttp = () => {
           body = JSON.stringify(body);
           headers['Content-Type'] = 'application/json';
         }
+        console.log('url', url);
+        console.log('method', method);
+        console.log('body', body);
+        console.log('headers', headers);
 
         const respons = await fetch(url, {
           method,
@@ -18,7 +22,7 @@ export const useHttp = () => {
           headers,
         });
         const data = await respons.json();
-        console.log('respons', respons);
+
         if (!respons.ok) {
           throw new Error(data.message || 'Something went wrong');
         }
@@ -27,6 +31,7 @@ export const useHttp = () => {
 
         return data;
       } catch (e) {
+        console.log('у', e);
         setLoading(false);
         setError(e.message);
         throw e;

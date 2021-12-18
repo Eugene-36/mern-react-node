@@ -31,7 +31,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.1.1",
     "react-router": "^6.0.0-beta.8",
-    "react-router-dom": "^6.1.1"
+    "react-router-dom": "^6.1.1",
+    "shortid": "^2.2.16"
   },
   "devDependencies": {
     "concurrently": "^6.4.0",
