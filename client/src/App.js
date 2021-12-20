@@ -5,16 +5,27 @@ import { useRoutes } from './routes';
 import { useAuth } from './hooks/auth.hook';
 import { AuthContext } from './context/AuthContext';
 import { Navbar } from './components/Navbar';
+import { Loader } from './components/Loader';
 import 'materialize-css';
 //console.log(useRoutes);
 
 //======================================
 
 function App() {
-  const { token, login, logout, userId } = useAuth();
+  const { token, login, logout, userId, ready } = useAuth();
+  console.log('из app', token);
+
   const isAuthenticated = !!token;
-  const routes = useRoutes(isAuthenticated);
+  console.log('isAuthenticated', isAuthenticated);
+  const routes = useRoutes(isAuthenticated); //! Когда тут true стоит , тогда норм работает
   const customHistory = createBrowserHistory();
+
+  //console.log('ready', ready);
+  //console.log('isAuthenticated в App', isAuthenticated);
+
+  if (!ready) {
+    <Loader />;
+  }
 
   return (
     <AuthContext.Provider

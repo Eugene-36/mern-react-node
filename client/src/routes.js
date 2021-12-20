@@ -8,7 +8,7 @@ import { AuthPage } from './pages/AuthPage';
 
 export const useRoutes = (isAuthenticated) => {
   if (isAuthenticated) {
-    console.log(isAuthenticated);
+    console.log('isAuthenticated с routes.js', isAuthenticated);
     return (
       <Switch>
         <Route path='/links' exact>

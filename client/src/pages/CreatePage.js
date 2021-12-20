@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { useHttp } from '../hooks/http.hook';
+import { useHistory } from 'react-router-dom';
 
 export const CreatePage = () => {
+  const history = useHistory();
   const auth = useContext(AuthContext);
   const { request } = useHttp();
   const [link, setLink] = useState('');
@@ -11,7 +13,7 @@ export const CreatePage = () => {
     window.M.updateTextFields();
   }, []);
 
-  // console.log('auth', auth.token);
+  //console.log('auth', auth);
   // console.log('link', link);
 
   const pressHandler = async (event) => {
@@ -21,8 +23,12 @@ export const CreatePage = () => {
           '/api/link/generate',
           'POST',
           { from: link },
-          { Authorization: `Bearer ${auth.token}` }
+          {
+            Authorization: `Bearer ${auth.token}`,
+          }
         );
+        //console.log(data);
+        history.push(`/detail/${data.link._id}`);
       } catch (e) {}
     }
   };

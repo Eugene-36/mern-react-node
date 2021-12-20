@@ -17,6 +17,7 @@ router.post('/generate', auth, async (req, res) => {
     if (existing) {
       return res.json({ link: existing });
     }
+
     const to = baseUrl + '/t/' + code;
 
     const link = new Link({
@@ -26,11 +27,13 @@ router.post('/generate', auth, async (req, res) => {
       owner: req.user.userId,
     });
 
+    console.log('link', link);
+
     await link.save();
 
     res.status(201).json({ link });
-  } catch (error) {
-    res.status(500).json({ message: 'Something went wrong, try again' });
+  } catch (e) {
+    res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' });
   }
 });
 
@@ -38,8 +41,8 @@ router.get('/', auth, async (req, res) => {
   try {
     const links = await Link.find({ owner: req.user.userId });
     res.json(links);
-  } catch (error) {
-    res.status(500).json({ message: 'Something went wrong, try again' });
+  } catch (e) {
+    res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' });
   }
 });
 
@@ -47,8 +50,9 @@ router.get('/:id', auth, async (req, res) => {
   try {
     const link = await Link.findById(req.params.id);
     res.json(link);
-  } catch (error) {
-    res.status(500).json({ message: 'Something went wrong, try again' });
+  } catch (e) {
+    res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' });
   }
 });
+
 module.exports = router;
