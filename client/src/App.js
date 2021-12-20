@@ -12,11 +12,11 @@ import 'materialize-css';
 //======================================
 
 function App() {
-  const { token, login, logout, userId, ready } = useAuth();
-  console.log('из app', token);
+  const { login, logout, token, userId, ready } = useAuth();
+  //console.log('из app', token);
 
   const isAuthenticated = !!token;
-  console.log('isAuthenticated', isAuthenticated);
+  //console.log('isAuthenticated', isAuthenticated);
   const routes = useRoutes(isAuthenticated); //! Когда тут true стоит , тогда норм работает
   const customHistory = createBrowserHistory();
 
@@ -24,7 +24,7 @@ function App() {
   //console.log('isAuthenticated в App', isAuthenticated);
 
   if (!ready) {
-    <Loader />;
+    return <Loader />;
   }
 
   return (

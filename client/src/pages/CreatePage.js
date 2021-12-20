@@ -13,8 +13,8 @@ export const CreatePage = () => {
     window.M.updateTextFields();
   }, []);
 
-  //console.log('auth', auth);
-  // console.log('link', link);
+  console.log('auth', auth);
+  console.log('link', link);
 
   const pressHandler = async (event) => {
     if (event.key === 'Enter') {
