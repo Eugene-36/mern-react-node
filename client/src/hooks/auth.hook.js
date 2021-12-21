@@ -10,9 +10,6 @@ export const useAuth = () => {
     setUserId(id);
     setToken(jwtToken);
 
-    //console.log('jwtToken', jwtToken);
-    //console.log('id', id);
-
     localStorage.setItem(
       storageName,
       JSON.stringify({ userId: id, token: jwtToken })
@@ -30,14 +27,9 @@ export const useAuth = () => {
 
     if (data && data.token) {
       login(data.userId, data.token);
-      // console.log(
-      //   'data.token, data.userId из auth.hook',
-      //   data.token,
-      //   data.userId
-      // );
     }
     setReady(true);
   }, [login]);
-  console.log('token из auth hook 41', token);
+
   return { login, logout, token, userId, ready };
 };

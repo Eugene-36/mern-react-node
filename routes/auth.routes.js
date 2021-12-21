@@ -79,7 +79,6 @@ router.post(
       const token = jwt.sign({ userId: user.id }, config.get('jwtSecret'), {
         expiresIn: '365d',
       });
-      console.log('JWTtoken', token);
 
       res.json({ token, userId: user.id });
     } catch (error) {
